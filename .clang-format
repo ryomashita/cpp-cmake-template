@@ -1,0 +1,9 @@
+BasedOnStyle: Google
+
+Language: Cpp
+# IndentWidth: 2
+# TabWidth: 2
+# UseTab: ForIndentation
+
+DeriveLineEnding: true # true: use line ending most used in file
+UseCRLF: false # false: DeriverLineEnding decides
