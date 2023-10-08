@@ -1,0 +1,12 @@
+{
+    // https://stackoverflow.com/questions/48945319/a-keybindings-json-per-workspace-in-visual-studio-code
+    // "when": "config.workspaceKeybindings.myLocalKeyBindings.enabled",により
+    // workspace毎のkeybindingsを実現する
+    // "F5": テスト実行
+    "workspaceKeybindings.myLocalKeyBindings.enabled": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "files.associations": {
+        "filesystem": "cpp"
+    },
+}
