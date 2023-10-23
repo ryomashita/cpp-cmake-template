@@ -6,6 +6,9 @@
     "workspaceKeybindings.myLocalKeyBindings.enabled": true,
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
+    "cmake.generator": "Ninja",
+    "cmake.cmakePath": "cmake",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
     "files.associations": {
         "filesystem": "cpp"
     },
