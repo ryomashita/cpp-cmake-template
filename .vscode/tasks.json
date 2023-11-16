@@ -87,7 +87,7 @@
                 "command": "clang-format -style=file --dry-run --Werror $(Get-ChildItem -Path $PWD/src,$PWD/test,$PWD/include -Recurse | Where Name -Match '.(?:cpp|hpp|h|cc|cxx)$' | Select-Object -ExpandProperty FullName)"
             },
             "linux": {
-                "command": "find src test include -regex '.*\\.\\(cpp\\|hpp\\|h\\|cc\\|cxx\\)' -exec clang-format -style=file --dry-run --Werror -i {} \\;"
+                "command": "find src test include -regex '.*\\.\\(cpp\\|hpp\\|h\\|cc\\|cxx\\)' -exec clang-format -style=file --dry-run --Werror -i {} +"
             },
             "detail": "run clang-format --dry-run for workspaceFolder",
             "problemMatcher": []
