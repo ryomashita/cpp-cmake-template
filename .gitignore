@@ -1,5 +1,6 @@
 # User Configuration
 build/**
+install/**
 
 # Prerequisites
 *.d

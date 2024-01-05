@@ -21,7 +21,9 @@ The directory structure is based on [The Pitchfork Layout (PFL)](https://api.css
 - `data/` : Contaqins not explicitly code files.
 - `tools/` : Contains scripts and tools.
 - `docs/` : Contains documents.
-- `cmakes/` : Contains CMake scripts.
+- `cmake/` : Contains CMake scripts.
+- `install/` : temporary install directory.
+
 
 If you want to add submodule projects, you need to add the following directories.
 - `libs/` : the root directory of the submodule projects.
