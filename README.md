@@ -15,16 +15,16 @@ The directory structure is based on [The Pitchfork Layout (PFL)](https://api.css
 - `build/` : temporary build directory.
 - `include/` : Contains public header files for users.
 - `src/` : Contains source files and private header files.
-- `tests/` : Contains test files.
+- `test/` : Contains test files.
 - `examples/` : Contains example files.
-- `externals/` : Contains files from external projects.
+- `external/` : Contains files from external projects.
 - `data/` : Contaqins not explicitly code files.
-- `tools/` : Contains scripts and tools.
-- `docs/` : Contains documents.
+- `tool/` : Contains scripts and tools.
+- `doc/` : Contains documents.
 - `cmake/` : Contains CMake scripts.
 - `install/` : temporary install directory.
 
 
 If you want to add submodule projects, you need to add the following directories.
-- `libs/` : the root directory of the submodule projects.
-- `extras/` : the root directory of the submodule projects with some dependencies.
+- `lib/` : the root directory of the submodule projects.
+- `extra/` : the root directory of the submodule projects with some dependencies.
