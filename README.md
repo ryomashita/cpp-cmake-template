@@ -2,12 +2,12 @@
 
 ## About
 A template for C++ projects using CMake.
-Contains settings for using the following tools:
+This repository includes settings for the following tools:
 + [CMake](https://cmake.org/)
-+ [VSCode](https://code.visualstudio.com/)
 + [Google Test](https://github.com/google/googletest)
 + [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 + [clang-tidy](https://clang.llvm.org/extra/clang-tidy/)
++ [VSCode](https://code.visualstudio.com/)
 
 ## Directoris
 The directory structure is based on [The Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs).
@@ -23,7 +23,7 @@ The directory structure is based on [The Pitchfork Layout (PFL)](https://api.css
   - `cmake/` : Contains CMake scripts.
 - `doc/` : Contains documents.
 
-The following directories are not included in the repository, but there names are reserved.
+The following directories are not included in the repository, but these names are reserved.
 - `build/` : Temporary build directory.
 - `install/` : Temporary install directory.
 
