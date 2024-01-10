@@ -15,7 +15,8 @@ set(CMAKE_INSTALL_PREFIX
     ${CMAKE_SOURCE_DIR}/install
     CACHE PATH "..." FORCE)
 
-# create ctest configuration in current directory
+# create ctest configuration in current directory.
+# This command should be in the source directory root.
 enable_testing()
 
 add_subdirectory(src)

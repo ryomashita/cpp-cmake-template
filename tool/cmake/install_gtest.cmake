@@ -15,9 +15,6 @@ set(gtest_force_shared_crt
     CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Enable CTest
-enable_testing()
-
 # 使用する場合は、 `GTest::gtest_main` をリンクする
 function(link_gtest target)
     target_link_libraries(${target} PRIVATE GTest::gtest_main)
