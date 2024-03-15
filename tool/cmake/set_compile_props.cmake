@@ -11,7 +11,7 @@ function(set_normal_compile_options target)
     # using Visual Studio C++ (/W4) # 例: 警告レベルを設定
     target_compile_options(${target} PRIVATE /W4)
     target_compile_options(${target} PRIVATE $<$<CONFIG:Release>:/O2>)
-  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
     # using GCC
     target_compile_options(${target} PRIVATE -O2)
     # Wextra : 有用でないor回避しづらい警告を有効にする
@@ -25,9 +25,9 @@ function(set_normal_compile_options target)
       -Wall -Wformat=2 -Wconversion -Wtrampolines -Wimplicit-fallthrough
       -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3
       -D_GLIBCXX_ASSERTIONS
-      -fstrict-flex-arrays=3
+      -fstrict-flex-arrays=3 # since GCC 13 & Clang 16.0.0
       -fstack-clash-protection -fstack-protector-strong
-      -Wl,-z,nodlopen -Wl,-z,noexecstack
+      -Wl,-z,nodlopen -Wl,-z,noexecstack # linker options are warned in clang
       -Wl,-z,relro -Wl,-z,now
       -fPIE -pie -fPIC -shared)
   elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
