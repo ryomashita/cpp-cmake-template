@@ -13,8 +13,23 @@ function(set_normal_compile_options target)
     target_compile_options(${target} PRIVATE $<$<CONFIG:Release>:/O2>)
   elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     # using GCC
-    target_compile_options(${target} PRIVATE -Wall -Wextra -Wpedantic) # 例: 警告オプションを設定
     target_compile_options(${target} PRIVATE -O2)
+    # Wextra : 有用でないor回避しづらい警告を有効にする
+    # Wpedantic : コンパイラ拡張機能を警告する
+    target_compile_options(${target} PRIVATE -Wextra -Wpedantic)
+
+    # Recommended Compile Options by OpenSSF
+    # https://best.openssf.org/Compiler-Hardening-Guides/Compiler-Options-Hardening-Guide-for-C-and-C++.html
+    # https://www.linuxfoundation.jp/openssf/2023/12/compiler-options-hardening-guide-for-c-and-cpp-jp/
+    target_compile_options(${target} PRIVATE
+      -Wall -Wformat=2 -Wconversion -Wtrampolines -Wimplicit-fallthrough
+      -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3
+      -D_GLIBCXX_ASSERTIONS
+      -fstrict-flex-arrays=3
+      -fstack-clash-protection -fstack-protector-strong
+      -Wl,-z,nodlopen -Wl,-z,noexecstack
+      -Wl,-z,relro -Wl,-z,now
+      -fPIE -pie -fPIC -shared)
   elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # using Clang
   elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
