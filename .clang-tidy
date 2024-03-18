@@ -1,10 +1,8 @@
 ---
-Checks:          'clang-diagnostic-*,clang-analyzer-*'
+Checks: "-*, clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,bugprone-*,modernize-*,performance-*,portability-*,google-*"
 WarningsAsErrors: ''
 HeaderFilterRegex: ''
-AnalyzeTemporaryDtors: false
-FormatStyle:     none
-User:            yamaryo
+FormatStyle: file
 CheckOptions:
   - key:             llvm-else-after-return.WarnOnConditionVariables
     value:           'false'

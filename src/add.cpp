@@ -1,2 +1,2 @@
 #include "add.h"
-int add(int a, int b) { return a + b; }
+auto add(int a, int b) -> int { return a + b; }
