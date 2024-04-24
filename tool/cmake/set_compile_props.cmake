@@ -4,10 +4,10 @@ endfunction()
 
 function(set_normal_compile_options target)
   # Set Language Standard
-  set_target_cxx20(${target})  
+  set_target_cxx20(${target})
 
   # Set Compile Options
-  if(CMAKE_CXX_COMPILER_ID MATCHES  "MSVC")
+  if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC" OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND CMAKE_CXX_SIMULATE_ID MATCHES "MSVC"))
     # using Visual Studio C++ (/W4) # 例: 警告レベルを設定
     target_compile_options(${target} PRIVATE /W4)
     target_compile_options(${target} PRIVATE $<$<CONFIG:Release>:/O2>)
@@ -17,7 +17,7 @@ function(set_normal_compile_options target)
     # Wextra : 有用でないor回避しづらい警告を有効にする
     # Wpedantic : コンパイラ拡張機能を警告する
     # Wshadow=local : ローカル変数での変数名の重複を警告する
-    target_compile_options(${target} PRIVATE -Wextra -Wpedantic -Wshadow=local)
+    target_compile_options(${target} PRIVATE -Wextra -Wpedantic)
 
     # Recommended Compile Options by OpenSSF
     # https://best.openssf.org/Compiler-Hardening-Guides/Compiler-Options-Hardening-Guide-for-C-and-C++.html
@@ -30,6 +30,7 @@ function(set_normal_compile_options target)
 
     if(CMAKE_CXX_COMPILER_ID MATCHES  "GNU")
       target_compile_options(${target} PRIVATE
+        -Wshadow=local
         -Wtrampolines # Only GCC
         -Wl,-z,nodlopen -Wl,-z,noexecstack # linker options are warned in clang
         -Wl,-z,relro -Wl,-z,now
@@ -37,7 +38,7 @@ function(set_normal_compile_options target)
     elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND CMAKE_CXX_COMPILER_VERSION GREATER_EQUAL 10.0)
       # deprecated-copy-dtor : C++17以降で非推奨となったコピーコンストラクタを警告する
       # newline-eof : ファイルの最後に改行がない場合に警告する
-      target_compile_options(${target} PRIVATE -Wdeprecated-copy-dtor -Wnewline-eof)
+      target_compile_options(${target} PRIVATE -Wshadow -Wdeprecated-copy-dtor -Wnewline-eof)
     endif()
   else()
     # if(CMAKE_CXX_COMPILER_ID MATCHES  "Intel")

@@ -10,6 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # set cmake scripts directory
 set(CMAKE_SCRIPTS_DIR ${CMAKE_SOURCE_DIR}/tool/cmake)
 include(${CMAKE_SCRIPTS_DIR}/set_compile_props.cmake)
+include(${CMAKE_SCRIPTS_DIR}/set_warnings_as_errors.cmake)
 
 # set default install path 
 # (can be overwritten with -DCMAKE_INSTALL_PREFIX=...)
