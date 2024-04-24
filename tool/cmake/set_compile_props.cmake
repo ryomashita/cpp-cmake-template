@@ -7,16 +7,17 @@ function(set_normal_compile_options target)
   set_target_cxx20(${target})  
 
   # Set Compile Options
-  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  if(CMAKE_CXX_COMPILER_ID MATCHES  "MSVC")
     # using Visual Studio C++ (/W4) # 例: 警告レベルを設定
     target_compile_options(${target} PRIVATE /W4)
     target_compile_options(${target} PRIVATE $<$<CONFIG:Release>:/O2>)
-  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+  elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     # using GCC or Clang
     target_compile_options(${target} PRIVATE -O2)
     # Wextra : 有用でないor回避しづらい警告を有効にする
     # Wpedantic : コンパイラ拡張機能を警告する
-    target_compile_options(${target} PRIVATE -Wextra -Wpedantic)
+    # Wshadow=local : ローカル変数での変数名の重複を警告する
+    target_compile_options(${target} PRIVATE -Wextra -Wpedantic -Wshadow=local)
 
     # Recommended Compile Options by OpenSSF
     # https://best.openssf.org/Compiler-Hardening-Guides/Compiler-Options-Hardening-Guide-for-C-and-C++.html
@@ -27,14 +28,19 @@ function(set_normal_compile_options target)
       -fstrict-flex-arrays=3 # from GCC 13 & Clang 16.0.0
       -fstack-clash-protection -fstack-protector-strong)
 
-    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    if(CMAKE_CXX_COMPILER_ID MATCHES  "GNU")
       target_compile_options(${target} PRIVATE
         -Wtrampolines # Only GCC
         -Wl,-z,nodlopen -Wl,-z,noexecstack # linker options are warned in clang
         -Wl,-z,relro -Wl,-z,now
         -fPIE -pie -fPIC -shared)
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND CMAKE_CXX_COMPILER_VERSION GREATER_EQUAL 10.0)
+      # deprecated-copy-dtor : C++17以降で非推奨となったコピーコンストラクタを警告する
+      # newline-eof : ファイルの最後に改行がない場合に警告する
+      target_compile_options(${target} PRIVATE -Wdeprecated-copy-dtor -Wnewline-eof)
     endif()
-  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-    # using Intel C++
+  else()
+    # if(CMAKE_CXX_COMPILER_ID MATCHES  "Intel")
+    message(FATAL_ERROR "Not supported compiler")
   endif()
 endfunction()

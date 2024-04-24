@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 project(CppTemplateProject VERSION 0.1 LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # generate build/compile_commands.json (for clang-tools)
