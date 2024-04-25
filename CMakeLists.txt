@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.24)
-project(CppTemplateProject VERSION 0.1 LANGUAGES CXX)
+project(
+  CppTemplateProject
+  VERSION 0.1
+  LANGUAGES CXX)
 
-# CMake options
-# e.g., cmake ... -DENABLE_SANITIZERS=ON
+# CMake options e.g., cmake ... -DENABLE_SANITIZERS=ON
 option(ENABLE_SANITIZERS "Run AddressSanitizer" OFF)
-
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -19,18 +20,17 @@ include(${CMAKE_SCRIPTS_DIR}/set_warnings_as_errors.cmake)
 include(${CMAKE_SCRIPTS_DIR}/enable_memcheck.cmake)
 include(${CMAKE_SCRIPTS_DIR}/enable_sanitizers.cmake)
 
-# set default install path 
-# (can be overwritten with -DCMAKE_INSTALL_PREFIX=...)
+# set default install path (can be overwritten with -DCMAKE_INSTALL_PREFIX=...)
 set(CMAKE_INSTALL_PREFIX
     ${CMAKE_SOURCE_DIR}/install
     CACHE PATH "..." FORCE)
 
-# create ctest configuration in current directory.
-# This command should be in the source directory root.
+# create ctest configuration in current directory. This command should be in the
+# source directory root.
 enable_testing()
 
 if(ENABLE_SANITIZERS)
-    enable_sanitizers()
+  enable_sanitizers()
 endif()
 
 add_subdirectory(src)
