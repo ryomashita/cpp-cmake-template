@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.24)
 project(CppTemplateProject VERSION 0.1 LANGUAGES CXX)
 
+# CMake options
+# e.g., cmake ... -DENABLE_SANITIZERS=ON
+option(ENABLE_SANITIZERS "Run AddressSanitizer" OFF)
+
+
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -23,6 +28,10 @@ set(CMAKE_INSTALL_PREFIX
 # create ctest configuration in current directory.
 # This command should be in the source directory root.
 enable_testing()
+
+if(ENABLE_SANITIZERS)
+    enable_sanitizers()
+endif()
 
 add_subdirectory(src)
 add_subdirectory(test)
