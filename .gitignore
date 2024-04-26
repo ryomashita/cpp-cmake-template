@@ -1,6 +1,7 @@
 # User Configuration
 build/**
 install/**
+.cache/**
 
 # Prerequisites
 *.d
