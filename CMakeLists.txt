@@ -5,7 +5,7 @@ project(
   LANGUAGES CXX)
 
 # CMake options e.g., cmake ... -DENABLE_SANITIZERS=ON
-option(ENABLE_SANITIZERS "Run AddressSanitizer" OFF)
+option(OPTION_ENABLE_SANITIZERS "Run AddressSanitizer" OFF)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -29,7 +29,7 @@ set(CMAKE_INSTALL_PREFIX
 # source directory root.
 enable_testing()
 
-if(ENABLE_SANITIZERS)
+if(OPTION_ENABLE_SANITIZERS)
   enable_sanitizers()
 endif()
 
@@ -39,3 +39,9 @@ add_subdirectory(test)
 # I refered the following projecst and articles to make cmake scripts.
 # https://best.openssf.org/Compiler-Hardening-Guides/Compiler-Options-Hardening-Guide-for-C-and-C++.html
 # https://github.com/boost-ext/ut
+
+# CMake Style Guidelines:
+# https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1
+# https://fujii.github.io/2015/10/10/cmake-best-practice/
+# https://learn.microsoft.com/ja-jp/vcpkg/contributing/cmake-guidelines
+# https://www.slideshare.net/DanielPfeifer1/cmake-48475415

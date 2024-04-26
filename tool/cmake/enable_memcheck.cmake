@@ -1,7 +1,12 @@
-# valgrind3.18 では clang ビルド時失敗するが, 3.22 では成功する (DWARF バージョン対応?による)
+find_program(VALGRIND_EXECUTABLE valgrind)
+if(NOT VALGRIND_EXECUTABLE)
+  message(ERROR "valgrind not found")
+  return()
+endif()
+
+# valgrind3.18 では clang ビルド時失敗するが, 3.22 では成功する (DWARF バージョン対応?が原因か)
 function(enable_memcheck target)
-  find_program(VALGRIND_EXECUTABLE valgrind)
-  message(STATUS "VALGRIND_EXECUTABLE: ${VALGRIND_EXECUTABLE}")
+  # message(STATUS "VALGRIND_EXECUTABLE: ${VALGRIND_EXECUTABLE}")
   get_target_property(target_type ${target} TYPE)
   if(NOT target_type STREQUAL "EXECUTABLE")
     message(

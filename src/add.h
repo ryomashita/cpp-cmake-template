@@ -1,5 +1,5 @@
 #ifndef SRC_ADD_H
 #define SRC_ADD_H
-int add(int a, int b);
+auto add(int a, int b) -> int;
 
-#endif  // SRC_ADD_H
+#endif // SRC_ADD_H
