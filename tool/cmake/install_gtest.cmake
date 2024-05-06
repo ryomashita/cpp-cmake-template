@@ -13,9 +13,13 @@ set(gtest_force_shared_crt
     CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# 使用する場合は、 `GTest::gtest_main` をリンクする
-function(link_gtest target)
+function(link_gtest_main target)
+  # gtest_main : gtest 本体 + main関数
   target_link_libraries(${target} PRIVATE GTest::gtest_main)
+endfunction()
+function(link_gtest target)
+  # gtest : gtest 本体 (main関数は含まれず、別途定義の必要がある)
+  target_link_libraries(${target} PRIVATE GTest::gtest)
 endfunction()
 
 # ターゲットをGoogleTestに登録する
@@ -26,6 +30,6 @@ endfunction()
 
 # gtestのリンクと登録を一括で行う
 function(enable_gtest target)
-  link_gtest(${target})
+  link_gtest_main(${target})
   register_gtest(${target})
 endfunction()
