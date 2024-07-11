@@ -5,7 +5,7 @@ project(
   LANGUAGES CXX)
 
 # CMake options e.g., cmake ... -DENABLE_SANITIZERS=ON
-option(OPTION_ENABLE_SANITIZERS "Run AddressSanitizer" OFF)
+option(CppTemplateProject_OPTION_ENABLE_SANITIZERS "Run AddressSanitizer" OFF)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -29,7 +29,7 @@ set(CMAKE_INSTALL_PREFIX
 # source directory root.
 enable_testing()
 
-if(OPTION_ENABLE_SANITIZERS)
+if(CppTemplateProject_OPTION_ENABLE_SANITIZERS)
   enable_sanitizers()
 endif()
 
