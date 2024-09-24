@@ -9,6 +9,11 @@
         "editorInlayHint.background": "#02020223",
         "editorInlayHint.foreground": "#eeeeee58",
     },
+    "files.associations": {
+        "*.c": "c",
+        "*.h": "cpp",
+        "*.cpp": "cpp"
+    },
     "[cpp]": {
         "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
     },
@@ -16,9 +21,6 @@
     "cmake.cmakePath": "cmake",
     "cmake.buildDirectory": "${workspaceFolder}/build",
     "cmake.configureOnOpen": true,
-    "files.associations": {
-        "filesystem": "cpp"
-    },
     "C_Cpp.intelliSenseEngine": "disabled", // using clangd
     "clangd.arguments": [
         // "--enable-config", // enable config in .clangd

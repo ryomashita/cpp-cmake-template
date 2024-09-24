@@ -60,18 +60,6 @@
         },
         {
             "type": "shell",
-            "label": "Run GGhostLoaderCui.exe [Debug]",
-            "command": [
-                "cd ${workspaceFolder}/build/src/Debug && ./GGhostLoaderCui.exe"
-            ],
-            "dependsOn": [
-                "CMake: build"
-            ],
-            "detail": "run GGhostLoaderCui.exe[Debug Build] in shell.",
-            "problemMatcher": []
-        },
-        {
-            "type": "shell",
             "label": "Open Install Directory",
             "command": [
                 "explorer.exe '${workspaceFolder}\\install'"
