@@ -66,6 +66,20 @@ Example of `CMakeUserPresets.json` on Windows:
       "environment": {
         "VCPKG_ROOT": "C:/vcpkg"
       }
+    },
+    {
+      "name": "x64-Debug",
+      "inherits": "x64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "x64-Release",
+      "inherits": "x64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
     }
   ]
 }
